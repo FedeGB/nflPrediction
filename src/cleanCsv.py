@@ -19,3 +19,4 @@ def cleanCSV(file):
 				spamwriter.writerow(new_line)
 
 
+cleanCSV('postSporqDraftOutcomes - postSporqDraftOutcomes.csv')

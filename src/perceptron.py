@@ -5,7 +5,7 @@ import numpy as np
 import csv
 
 #parametros usados para entrenar la red
-learning_rate = 0.1 # tasa de aprendizaje
+learning_rate = 0.2 # tasa de aprendizaje
 num_steps = 1000 # cantidad de pasos de entrenamiento
 batch_size = 128 # cantidad de ejemplos por paso
 display_step = 100 # cada cuanto imprime algo por pantalla
