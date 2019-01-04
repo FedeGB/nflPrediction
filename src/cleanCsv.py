@@ -2,7 +2,7 @@ import csv
 import os
 
 def cleanCSV(file):
-	valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AvgAV Categorizado', 'College # Normalizado', 'Conference # Norm', 'NFL.com Grade', 'SPORQ Normalizado']
+	valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AvgAV Categorizado', 'Conference # Norm', 'NFL.com Grade', 'SPORQ Normalizado']
 	dir_path = os.path.dirname(os.path.realpath(__file__)) + '/'
 	filename = dir_path + file
 	with open(filename) as inf:
