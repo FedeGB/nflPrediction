@@ -1,12 +1,12 @@
 import csv
 import os
 
-def cleanCSV(file):
+def cleanCSV(file, output = 'clean_csv.csv'):
 	valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AvgAV Categorizado', 'Conference # Norm', 'NFL.com Grade', 'SPORQ Normalizado']
 	dir_path = os.path.dirname(os.path.realpath(__file__)) + '/'
 	filename = dir_path + file
 	with open(filename) as inf:
-		with open('clean_csv.csv', 'w', newline='') as csvoutput:
+		with open(output, 'w', newline='') as csvoutput:
 			spamwriter = csv.writer(csvoutput, delimiter=',')
 			spamwriter.writerow(valid_columns)
 			records = csv.DictReader(inf)
@@ -20,3 +20,4 @@ def cleanCSV(file):
 
 
 cleanCSV('postSporqDraftOutcomes - postSporqDraftOutcomes.csv')
+cleanCSV('test_inicial.csv', 'test.csv')
