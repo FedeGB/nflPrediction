@@ -2,7 +2,9 @@ import csv
 import os
 
 def cleanCSV(file, output = 'clean_csv.csv'):
-	valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AvgAV Categorizado', 'Conference # Norm', 'NFL.com Grade', 'SPORQ Normalizado']
+	# Old values from postSporqDraftOutcomes csv
+	# valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AvgAV Categorizado', 'Conference # Norm', 'NFL.com Grade', 'SPORQ Normalizado']
+	valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AAV Cat', 'C# Norm', 'Grade', 'SPORQ Normalizado', 'College # Norm']
 	dir_path = os.path.dirname(os.path.realpath(__file__)) + '/'
 	filename = dir_path + file
 	with open(filename) as inf:
@@ -19,5 +21,6 @@ def cleanCSV(file, output = 'clean_csv.csv'):
 				spamwriter.writerow(new_line)
 
 
-cleanCSV('postSporqDraftOutcomes - postSporqDraftOutcomes.csv')
-cleanCSV('test_inicial.csv', 'test.csv')
+# cleanCSV('postSporqDraftOutcomes - postSporqDraftOutcomes.csv')
+# cleanCSV('test_inicial.csv', 'test.csv')
+cleanCSV('newAVJoined - newAVJoined.csv', 'newAV_clean.csv')

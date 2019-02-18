@@ -56,7 +56,9 @@ def model_fn (features, labels, mode):
 def processCsv(input_file, train = True):
 	dir_path = os.path.dirname(os.path.realpath(__file__)) + '/'
 	filename = dir_path + input_file
+	# Old values for sporQ csv
 	valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AvgAV Categorizado', 'Conference # Norm', 'NFL.com Grade', 'SPORQ Normalizado']
+	# valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AAV Cat', 'C# Norm', 'Grade', 'SPORQ Normalizado', 'College # Norm']
 	input_matrix = []
 	if(train):
 		input_prediction = []
@@ -65,7 +67,9 @@ def processCsv(input_file, train = True):
 		for row in records:
 			line_values = []
 			for column in valid_columns:
+				# Old value for sporQ csv
 				if column == 'AvgAV Categorizado':
+				# if column == 'AAV Cat':
 					avg = int(row[column])
 				else:
 					line_values.append(float(row[column]))
@@ -99,14 +103,14 @@ e = model.evaluate(input_fn)
 
 print("Precision en el conjunto de prueba:", e['accuracy'])
 
-testX = processCsv('test.csv', False)
+# testX = processCsv('newAV_clean.csv', False)
 
-x_dict = {'players': np.array(testX)}
-input_fn = tf.estimator.inputs.numpy_input_fn(
-x=x_dict, num_epochs=1, shuffle=False)
+# x_dict = {'players': np.array(testX)}
+# input_fn = tf.estimator.inputs.numpy_input_fn(
+# x=x_dict, num_epochs=1, shuffle=False)
 
-initialP = 0
-predictions = model.predict(input_fn)
-for prediction in predictions:
-	print(str(initialP) + ': {}'.format(prediction))
-	initialP += 1
+# initialP = 0
+# predictions = model.predict(input_fn)
+# for prediction in predictions:
+# 	print(str(initialP) + ': {}'.format(prediction))
+# 	initialP += 1
