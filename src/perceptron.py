@@ -13,8 +13,9 @@ n_hidden_1 = 256 # numero de neuronas en la capa oculta 1
 n_hidden_2 = 256 # numero de neuronas en la capa oculta 2
 n_hidden_3 = 256 # numero de neuronas en la capa oculta 3
 n_hidden_4 = 256 # numero de neuronas en la capa oculta 4
+n_hidden_5 = 256 # numero de neuronas en la capa oculta 5
 num_input = 7
-num_classes = 5
+num_classes = 3
 
 # Definimos la red neuronal
 def neural_net (x_dict):
@@ -23,7 +24,8 @@ def neural_net (x_dict):
 	layer_2 = tf.layers.dense(layer_1, n_hidden_2)
 	layer_3 = tf.layers.dense(layer_2, n_hidden_3)
 	layer_4 = tf.layers.dense(layer_3, n_hidden_4)
-	out_layer = tf.layers.dense(layer_4, num_classes)
+	layer_5 = tf.layers.dense(layer_4, n_hidden_5)
+	out_layer = tf.layers.dense(layer_5, num_classes)
 	return out_layer
 
 def model_fn (features, labels, mode):
@@ -57,8 +59,8 @@ def processCsv(input_file, train = True):
 	dir_path = os.path.dirname(os.path.realpath(__file__)) + '/'
 	filename = dir_path + input_file
 	# Old values for sporQ csv
-	valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AvgAV Categorizado', 'Conference # Norm', 'NFL.com Grade', 'SPORQ Normalizado']
-	# valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AAV Cat', 'C# Norm', 'Grade', 'SPORQ Normalizado', 'College # Norm']
+	# valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AvgAV Categorizado', 'Conference # Norm', 'NFL.com Grade', 'SPORQ Normalizado']
+	valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AltAAV Cat', 'C# Norm', 'Grade', 'SPORQ Normalizado']
 	input_matrix = []
 	if(train):
 		input_prediction = []
@@ -68,8 +70,8 @@ def processCsv(input_file, train = True):
 			line_values = []
 			for column in valid_columns:
 				# Old value for sporQ csv
-				if column == 'AvgAV Categorizado':
-				# if column == 'AAV Cat':
+				# if column == 'AvgAV Categorizado':
+				if column == 'AltAAV Cat':
 					avg = int(row[column])
 				else:
 					line_values.append(float(row[column]))
@@ -80,7 +82,7 @@ def processCsv(input_file, train = True):
 		return input_matrix, input_prediction
 	return input_matrix
 
-train_1, train_2 = processCsv('clean_csv.csv', True)
+train_1, train_2 = processCsv('alt_5_clean.csv', True)
 trainX, testX, trainY, testY = train_test_split(train_1, train_2, test_size=0.33, random_state=42)
 
 model = tf.estimator.Estimator(model_fn)
