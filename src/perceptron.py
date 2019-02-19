@@ -82,7 +82,7 @@ def processCsv(input_file, train = True):
 		return input_matrix, input_prediction
 	return input_matrix
 
-train_1, train_2 = processCsv('alt_5_clean.csv', True)
+train_1, train_2 = processCsv('sin_2018_clean.csv', True)
 trainX, testX, trainY, testY = train_test_split(train_1, train_2, test_size=0.33, random_state=42)
 
 model = tf.estimator.Estimator(model_fn)
@@ -105,14 +105,14 @@ e = model.evaluate(input_fn)
 
 print("Precision en el conjunto de prueba:", e['accuracy'])
 
-# testX = processCsv('newAV_clean.csv', False)
+testX = processCsv('con_2018_clean.csv', False)
 
-# x_dict = {'players': np.array(testX)}
-# input_fn = tf.estimator.inputs.numpy_input_fn(
-# x=x_dict, num_epochs=1, shuffle=False)
+x_dict = {'players': np.array(testX)}
+input_fn = tf.estimator.inputs.numpy_input_fn(
+x=x_dict, num_epochs=1, shuffle=False)
 
-# initialP = 0
-# predictions = model.predict(input_fn)
-# for prediction in predictions:
-# 	print(str(initialP) + ': {}'.format(prediction))
-# 	initialP += 1
+initialP = 0
+predictions = model.predict(input_fn)
+for prediction in predictions:
+	print(str(initialP) + ': {}'.format(prediction))
+	initialP += 1

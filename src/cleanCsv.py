@@ -25,4 +25,6 @@ def cleanCSV(file, output = 'clean_csv.csv'):
 # cleanCSV('test_inicial.csv', 'test.csv')
 # cleanCSV('newAVJoined - newAVJoined.csv', 'newAV_clean.csv')
 # cleanCSV('newAVJoinedAltAV1.csv', 'alt_1_clean.csv')
-cleanCSV('newAVJoinedAltAV5.csv', 'alt_5_clean.csv')
+# cleanCSV('newAVJoinedAltAV5.csv', 'alt_5_clean.csv')
+cleanCSV('newAVJoinedAltAVSin2018.csv', 'sin_2018_clean.csv')
+cleanCSV('newAVJoinedAltAV2018.csv', 'con_2018_clean.csv')
