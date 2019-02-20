@@ -5,15 +5,14 @@ import numpy as np
 import csv
 
 #parametros usados para entrenar la red
-learning_rate = 0.2 # tasa de aprendizaje
+learning_rate = 0.3 # tasa de aprendizaje
 num_steps = 1000 # cantidad de pasos de entrenamiento
-batch_size = 128 # cantidad de ejemplos por paso
+batch_size = 256 # cantidad de ejemplos por paso
 display_step = 100 # cada cuanto imprime algo por pantalla
-n_hidden_1 = 256 # numero de neuronas en la capa oculta 1
-n_hidden_2 = 256 # numero de neuronas en la capa oculta 2
-n_hidden_3 = 256 # numero de neuronas en la capa oculta 3
-n_hidden_4 = 256 # numero de neuronas en la capa oculta 4
-n_hidden_5 = 256 # numero de neuronas en la capa oculta 5
+n_hidden_1 = 512 # numero de neuronas en la capa oculta 1
+n_hidden_2 = 512 # numero de neuronas en la capa oculta 2
+n_hidden_3 = 512 # numero de neuronas en la capa oculta 3
+n_hidden_4 = 512 # numero de neuronas en la capa oculta 4
 num_input = 7
 num_classes = 3
 
@@ -24,8 +23,7 @@ def neural_net (x_dict):
 	layer_2 = tf.layers.dense(layer_1, n_hidden_2)
 	layer_3 = tf.layers.dense(layer_2, n_hidden_3)
 	layer_4 = tf.layers.dense(layer_3, n_hidden_4)
-	layer_5 = tf.layers.dense(layer_4, n_hidden_5)
-	out_layer = tf.layers.dense(layer_5, num_classes)
+	out_layer = tf.layers.dense(layer_4, num_classes)
 	return out_layer
 
 def model_fn (features, labels, mode):
@@ -82,7 +80,7 @@ def processCsv(input_file, train = True):
 		return input_matrix, input_prediction
 	return input_matrix
 
-train_1, train_2 = processCsv('alt_5_clean.csv', True)
+train_1, train_2 = processCsv('alt_4_clean.csv', True)
 trainX, testX, trainY, testY = train_test_split(train_1, train_2, test_size=0.33, random_state=42)
 
 model = tf.estimator.Estimator(model_fn)
