@@ -103,14 +103,14 @@ e = model.evaluate(input_fn)
 
 print("Precision en el conjunto de prueba:", e['accuracy'])
 
-# testX = processCsv('newAV_clean.csv', False)
+testX = processCsv('con_2018_clean.csv', False)
 
-# x_dict = {'players': np.array(testX)}
-# input_fn = tf.estimator.inputs.numpy_input_fn(
-# x=x_dict, num_epochs=1, shuffle=False)
+x_dict = {'players': np.array(testX)}
+input_fn = tf.estimator.inputs.numpy_input_fn(
+x=x_dict, num_epochs=1, shuffle=False)
 
-# initialP = 0
-# predictions = model.predict(input_fn)
-# for prediction in predictions:
-# 	print(str(initialP) + ': {}'.format(prediction))
-# 	initialP += 1
+initialP = 0
+predictions = model.predict(input_fn)
+for prediction in predictions:
+	print(str(initialP) + ': {}'.format(prediction))
+	initialP += 1
