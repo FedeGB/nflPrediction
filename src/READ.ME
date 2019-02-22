@@ -1,0 +1,21 @@
+Set de entrenamiento con todos los datos: set_datos_nfl_draft_complete.csv
+
+Para generar un csv limpio del set de datos completo para correr el perceptron utilizar:
+$ python3 cleanCsv.py
+Dentro del mismo archivo se puede indicar archivo de entrada y el nombre del de salida.
+El array de 'valid_columns' serían los input para el perceptron.
+
+Para correr el percetron usar:
+$ python3 perceptron.py
+El array de 'valid_columns' serían los input para el perceptron.
+Dentro del mismo archivo en el sector final, esta la invocación de ambos processCsv:
+- El primero es para entrenar la red.
+- El último es para predecir y categorizar los input.
+
+El caso que dejamos es el de retrospectiva (post Draft):
+- Set entrenamiento: sin_2018_clean.csv
+- Set a predecir: con_2018_clean.csv
+
+Caso de predicción (pre Draft):
+- Set entrenamiento: sin_2018_noTM_noDP_clean.csv
+- Set a predecir: con_2018_noTM_noDP_clean.csv
