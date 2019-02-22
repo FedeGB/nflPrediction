@@ -5,15 +5,15 @@ import numpy as np
 import csv
 
 #parametros usados para entrenar la red
-learning_rate = 0.3 # tasa de aprendizaje
+learning_rate = 0.2 # tasa de aprendizaje
 num_steps = 1000 # cantidad de pasos de entrenamiento
 batch_size = 256 # cantidad de ejemplos por paso
 display_step = 100 # cada cuanto imprime algo por pantalla
-n_hidden_1 = 512 # numero de neuronas en la capa oculta 1
-n_hidden_2 = 512 # numero de neuronas en la capa oculta 2
-n_hidden_3 = 512 # numero de neuronas en la capa oculta 3
-n_hidden_4 = 512 # numero de neuronas en la capa oculta 4
-num_input = 7
+n_hidden_1 = 128 # numero de neuronas en la capa oculta 1
+n_hidden_2 = 128 # numero de neuronas en la capa oculta 2
+n_hidden_3 = 128 # numero de neuronas en la capa oculta 3
+n_hidden_4 = 128 # numero de neuronas en la capa oculta 3
+num_input = 5
 num_classes = 3
 
 # Definimos la red neuronal
@@ -58,7 +58,7 @@ def processCsv(input_file, train = True):
 	filename = dir_path + input_file
 	# Old values for sporQ csv
 	# valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AvgAV Categorizado', 'Conference # Norm', 'NFL.com Grade', 'SPORQ Normalizado']
-	valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AltAAV Cat', 'C# Norm', 'Grade', 'SPORQ Normalizado']
+	valid_columns = ['Pos # Normalizado', 'Age Normalizado', 'AltAAV Cat', 'C# Norm', 'Grade', 'SPORQ Normalizado']
 	input_matrix = []
 	if(train):
 		input_prediction = []
@@ -80,7 +80,7 @@ def processCsv(input_file, train = True):
 		return input_matrix, input_prediction
 	return input_matrix
 
-train_1, train_2 = processCsv('alt_4_clean.csv', True)
+train_1, train_2 = processCsv('sin_2018_noTM_noDP_clean.csv', True)
 trainX, testX, trainY, testY = train_test_split(train_1, train_2, test_size=0.33, random_state=42)
 
 model = tf.estimator.Estimator(model_fn)
@@ -103,7 +103,7 @@ e = model.evaluate(input_fn)
 
 print("Precision en el conjunto de prueba:", e['accuracy'])
 
-testX = processCsv('con_2018_clean.csv', False)
+testX = processCsv('con_2018_noTM_noDP_clean.csv', False)
 
 x_dict = {'players': np.array(testX)}
 input_fn = tf.estimator.inputs.numpy_input_fn(

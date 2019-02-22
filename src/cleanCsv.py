@@ -4,7 +4,7 @@ import os
 def cleanCSV(file, output = 'clean_csv.csv'):
 	# Old values from postSporqDraftOutcomes csv
 	# valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AvgAV Categorizado', 'Conference # Norm', 'NFL.com Grade', 'SPORQ Normalizado']
-	valid_columns = ['DP Normalizado', 'Tm # Normalizado', 'Pos # Normalizado', 'Age Normalizado', 'AltAAV Cat', 'C# Norm', 'Grade', 'SPORQ Normalizado']
+	valid_columns = ['Pos # Normalizado', 'Age Normalizado', 'AltAAV Cat', 'College # Norm', 'C# Norm', 'Grade', 'SPORQ Normalizado']
 	dir_path = os.path.dirname(os.path.realpath(__file__)) + '/'
 	filename = dir_path + file
 	with open(filename) as inf:
@@ -26,5 +26,5 @@ def cleanCSV(file, output = 'clean_csv.csv'):
 # cleanCSV('newAVJoined - newAVJoined.csv', 'newAV_clean.csv')
 # cleanCSV('newAVJoinedAltAV1.csv', 'alt_1_clean.csv')
 # cleanCSV('newAVJoinedAltAV5.csv', 'alt_5_clean.csv')
-cleanCSV('newAVJoinedAltAVSin2018.csv', 'sin_2018_clean.csv')
-cleanCSV('newAVJoinedAltAV2018.csv', 'con_2018_clean.csv')
+cleanCSV('newAVJoinedAltAVSin2018.csv', 'sin_2018_col_noTM_noDP_clean.csv')
+cleanCSV('newAVJoinedAltAV2018.csv', 'con_2018_col_noTM_noDP_clean.csv')
